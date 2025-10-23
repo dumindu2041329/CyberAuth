@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CyberAuth</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <div class="scanlines"></div>
+    <div class="glitch-overlay"></div>
+    
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="glitch" data-text="CYBERAUTH">CYBERAUTH</span>
+            </div>
+            <div class="nav-links">
+                <span id="userDisplay" class="user-display"></span>
+                <button id="logoutBtn" class="nav-btn logout-btn">LOGOUT</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">
+                <span class="glitch" data-text="SYSTEM CONTROL">SYSTEM CONTROL</span>
+            </h1>
+            <p class="dashboard-subtitle">Welcome to the grid, <span id="welcomeUser"></span></p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3>⚡ SYSTEM STATUS</h3>
+                </div>
+                <div class="card-body">
+                    <div class="status-item">
+                        <span>Connection:</span>
+                        <span class="status-active">ACTIVE</span>
+                    </div>
+                    <div class="status-item">
+                        <span>Security:</span>
+                        <span class="status-active">ENCRYPTED</span>
+                    </div>
+                    <div class="status-item">
+                        <span>Protocol:</span>
+                        <span class="status-active">ONLINE</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3>👤 USER PROFILE</h3>
+                </div>
+                <div class="card-body">
+                    <div class="profile-item">
+                        <span>Username:</span>
+                        <span id="profileUsername"></span>
+                    </div>
+                    <div class="profile-item">
+                        <span>Email:</span>
+                        <span id="profileEmail"></span>
+                    </div>
+                    <div class="profile-item">
+                        <span>Access Level:</span>
+                        <span class="status-active">AUTHORIZED</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3>📊 ACTIVITY</h3>
+                </div>
+                <div class="card-body">
+                    <div class="activity-item">
+                        <div class="activity-icon">✓</div>
+                        <div class="activity-text">
+                            <p>Authentication successful</p>
+                            <small>Just now</small>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">🔒</div>
+                        <div class="activity-text">
+                            <p>Security protocols active</p>
+                            <small>System status</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3>🌐 NETWORK</h3>
+                </div>
+                <div class="card-body">
+                    <div class="network-status">
+                        <div class="network-bar">
+                            <div class="network-fill" style="width: 85%"></div>
+                        </div>
+                        <p>Network Stability: 85%</p>
+                    </div>
+                    <div class="network-status">
+                        <div class="network-bar">
+                            <div class="network-fill" style="width: 92%"></div>
+                        </div>
+                        <p>Encryption Level: 92%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="auth-backend.js"></script>
+    <script>
+        // Check if user is logged in
+        if (!isLoggedIn()) {
+            window.location.href = 'login.html';
+        } else {
+            const user = getCurrentUser();
+            document.getElementById('userDisplay').textContent = user.username;
+            document.getElementById('welcomeUser').textContent = user.username;
+            document.getElementById('profileUsername').textContent = user.username;
+            document.getElementById('profileEmail').textContent = user.email;
+        }
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            logout();
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

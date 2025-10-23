@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberAuth - Welcome to the Future</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div class="scanlines"></div>
+    <div class="glitch-overlay"></div>
+    
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="glitch" data-text="CYBERAUTH">CYBERAUTH</span>
+            </div>
+            <div class="nav-links">
+                <a href="login.html" class="nav-btn">LOGIN</a>
+                <a href="signup.html" class="nav-btn neon-btn">SIGN UP</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <canvas id="cyberpunk-canvas"></canvas>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="glitch" data-text="ENTER THE GRID">ENTER THE GRID</span>
+            </h1>
+            <p class="hero-subtitle">
+                Access the digital realm. Secure authentication for the cyberpunk age.
+            </p>
+            <div class="hero-buttons">
+                <a href="signup.html" class="cta-btn primary">GET STARTED</a>
+                <a href="login.html" class="cta-btn secondary">CONNECT</a>
+            </div>
+        </div>
+        
+        <div class="grid-bg">
+            <div class="grid-line"></div>
+            <div class="grid-line"></div>
+            <div class="grid-line"></div>
+            <div class="grid-line"></div>
+            <div class="grid-line"></div>
+        </div>
+    </main>
+
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>INSTANT ACCESS</h3>
+            <p>Lightning-fast authentication protocols</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>ENCRYPTED</h3>
+            <p>Military-grade security systems</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🌐</div>
+            <h3>CONNECTED</h3>
+            <p>Access from anywhere in the metaverse</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2077 CyberAuth Systems. All rights reserved.</p>
+    </footer>
+    <script src="cyberpunk-scene.js"></script>
+</body>
+</html>
