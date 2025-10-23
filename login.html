@@ -29,7 +29,7 @@
             </h1>
             <p class="auth-subtitle">Connect to the grid</p>
             
-            <form id="loginForm" class="auth-form">
+            <form id="loginForm" class="auth-form" data-sfx-success="assets/sounds/login-success.mp3">
                 <div class="form-group">
                     <label for="loginEmail">EMAIL</label>
                     <input type="email" id="loginEmail" name="email" required placeholder="Enter email">
@@ -59,5 +59,14 @@
     </main>
 
     <script src="auth-backend.js"></script>
+    <script src="assets/js/sfx.js"></script>
+    <script>
+      initSfx({
+        clickSrc: 'assets/sounds/click.mp3',
+        navSrc: 'assets/sounds/nav.mp3',
+        volume: 0.9
+      });
+    </script>
+    <script src="assets/js/login-sfx.js"></script>
 </body>
 </html>

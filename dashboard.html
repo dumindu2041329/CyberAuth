@@ -117,6 +117,15 @@
     </main>
 
     <script src="auth-backend.js"></script>
+    <script src="assets/js/sfx.js"></script>
+    <script>
+      initSfx({
+        clickSrc: 'assets/sounds/click.mp3',
+        navSrc: 'assets/sounds/nav.mp3',
+        volume: 0.9
+      });
+    </script>
+    <script src="assets/js/post-auth-sfx.js"></script>
     <script>
         // Check if user is logged in
         if (!isLoggedIn()) {
