@@ -123,6 +123,13 @@ if (signupForm) {
     });
 }
 
+// Preload login success sound
+let loginSuccessAudio = null;
+if (document.getElementById('loginForm')) {
+    loginSuccessAudio = new Audio('assets/sounds/login-success.mp3');
+    loginSuccessAudio.load();
+}
+
 // Login Form Handler
 const loginForm = document.getElementById('loginForm');
 if (loginForm) {
@@ -162,8 +169,39 @@ if (loginForm) {
                 // Store user info
                 setCurrentUser(data.user);
                 
-                // Redirect to dashboard
-                window.location.href = 'dashboard.html';
+                // Play success sound and redirect
+                const soundSrc = 'assets/sounds/login-success.mp3';
+                
+                // Store for cross-page playback
+                try {
+                    sessionStorage.setItem('play-login-success', soundSrc);
+                } catch(e) {}
+                
+                // Use preloaded audio or create new one
+                const audio = loginSuccessAudio || new Audio(soundSrc);
+                
+                // Play audio and wait before redirect
+                const playPromise = audio.play();
+                
+                // Ensure redirect happens even if audio fails
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Audio playing, wait a bit longer
+                        setTimeout(() => {
+                            window.location.href = 'dashboard.html';
+                        }, 600);
+                    }).catch(() => {
+                        // Audio failed, redirect sooner
+                        setTimeout(() => {
+                            window.location.href = 'dashboard.html';
+                        }, 200);
+                    });
+                } else {
+                    // Old browser, just delay
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 600);
+                }
             } else {
                 showError('loginError', data.message || 'Login failed');
             }
