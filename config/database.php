@@ -1,8 +1,15 @@
 <?php
-// Load environment variables from .env file
-function loadEnv($path) {
+// Load database configuration from .env file
+function loadEnvConfig($path) {
+    $config = [
+        'DB_HOST' => 'localhost',
+        'DB_USER' => 'root',
+        'DB_PASS' => 'root',
+        'DB_NAME' => 'cyberauth_db'
+    ];
+    
     if (!file_exists($path)) {
-        return;
+        return $config;
     }
     
     $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -18,22 +25,24 @@ function loadEnv($path) {
             $key = trim($key);
             $value = trim($value);
             
-            // Set as environment variable if not already set
-            if (!getenv($key)) {
-                putenv("$key=$value");
+            // Store in config array
+            if (array_key_exists($key, $config)) {
+                $config[$key] = $value;
             }
         }
     }
+    
+    return $config;
 }
 
 // Load .env file from config directory
-loadEnv(__DIR__ . '/../.env');
+$dbConfig = loadEnvConfig(__DIR__ . '/../.env');
 
-// Database configuration (env-aware; falls back to local defaults)
-define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
-define('DB_USER', getenv('DB_USER') ?: 'root');
-define('DB_PASS', getenv('DB_PASS') ?: 'root');
-define('DB_NAME', getenv('DB_NAME') ?: 'cyberauth_db');
+// Database configuration
+define('DB_HOST', $dbConfig['DB_HOST']);
+define('DB_USER', $dbConfig['DB_USER']);
+define('DB_PASS', $dbConfig['DB_PASS']);
+define('DB_NAME', $dbConfig['DB_NAME']);
 
 // Create connection
 function getDBConnection() {

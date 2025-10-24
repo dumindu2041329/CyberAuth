@@ -1,7 +1,7 @@
 // User authentication system using PHP backend
 
-// API endpoints
-const API_BASE_URL = 'api/';
+// API endpoints - Use absolute path for production
+const API_BASE_URL = window.location.origin + '/api/';
 
 // Get current logged in user from localStorage
 function getCurrentUser() {
