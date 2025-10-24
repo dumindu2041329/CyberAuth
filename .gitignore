@@ -1,0 +1,12 @@
+# Environment variables
+.env
+
+# MAMP/XAMPP
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
